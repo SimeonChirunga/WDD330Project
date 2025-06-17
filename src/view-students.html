@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data Management - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .search-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            max-width: 500px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr.selected {
+            background-color: #d4edff;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .search-results {
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        .search-result-item {
+            padding: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-result-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .portal-link {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">SchoolLogo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-student.html">Add Student</a></li>
+                <li><a href="view-student.html">View Students</a></li>
+                <li><a href="enter-marks.html">Enter Student Marks</a></li>
+                <li><a href="generate-reports.html">Generate Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Student Data Management - Admin</h1>
+
+    <div class="portal-link">
+        <a href="parent-portal.html">Go to Parent Portal</a>
+    </div>
+
+    <div class="controls">
+        <button onclick="loadData()">Load Data from JSON</button>
+        <button onclick="saveToLocalStorage()">Save to localStorage</button>
+        <button onclick="loadFromLocalStorage()">Load from localStorage</button>
+        <a href="add-student.html"><button>Add New Student</button></a>
+        <button onclick="clearLocalStorage()">Clear localStorage</button>
+    </div>
+
+    <div class="search-container">
+        <h2>Search Students</h2>
+        <div class="form-group">
+            <label for="searchField">Search by:</label>
+            <select id="searchField">
+                <option value="StudentNo">Student Number</option>
+                <option value="Surname">Surname</option>
+                <option value="Forename">Forename</option>
+                <option value="Class">Class</option>
+                <option value="ParentEmail">Parent Email</option>
+                <option value="ParentName">Parent Name</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="searchTerm">Search term:</label>
+            <input type="text" id="searchTerm" placeholder="Enter search term">
+        </div>
+        <button onclick="searchStudents()">Search</button>
+        <div id="searchResults" class="search-results hidden"></div>
+    </div>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>StudentNo</th>
+                <th>Surname</th>
+                <th>Forename</th>
+                <th>Class</th>
+                <th>Parent Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studentData">
+            <!-- Student data will appear here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Global variables
+        let students = [];
+
+        // ======================
+        // STUDENT DATA FUNCTIONS
+        // ======================
+
+        async function loadData() {
+            try {
+                const response = await fetch('students.json');
+                students = await response.json();
+                displayStudents(students);
+                console.log('Data loaded from JSON file');
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+                alert('Error loading student data. Check console for details.');
+            }
+        }
+
+        function displayStudents(studentArray) {
+            const tbody = document.getElementById('studentData');
+            tbody.innerHTML = '';
+
+            studentArray.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.dataset.index = index;
+
+                row.innerHTML = `
+                    <td>${student.StudentNo}</td>
+                    <td>${student.Surname}</td>
+                    <td>${student.Forename}</td>
+                    <td>${student.Class || 'N/A'}</td>
+                    <td>${student.ParentEmail || 'N/A'}</td>
+                    <td>
+                        <a href="edit-student.html?studentNo=${student.StudentNo}"><button>Edit</button></a>
+                    </td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function generateStudentNo() {
+            if (students.length === 0) return 'THS0001';
+            const lastNo = students[students.length - 1].StudentNo;
+            const num = parseInt(lastNo.replace('THS', '')) + 1;
+            return 'THS' + num.toString().padStart(4, '0');
+        }
+
+        // ======================
+        // SEARCH FUNCTIONS
+        // ======================
+
+        function searchStudents() {
+            const searchField = document.getElementById('searchField').value;
+            const searchTerm = document.getElementById('searchTerm').value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+
+            if (!searchTerm) {
+                alert('Please enter a search term');
+                return;
+            }
+
+            const results = students.filter(student => {
+                const fieldValue = student[searchField] ? String(student[searchField]).toLowerCase() : '';
+                return fieldValue.includes(searchTerm);
+            }).slice(0, 10);
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-result-item">No students found</div>';
+            } else {
+                resultsContainer.innerHTML = results.map(student =>
+                    `<div class="search-result-item" onclick="window.location.href='edit-student.html?studentNo=${student.StudentNo}'">
+                        ${student.StudentNo} - ${student.Surname}, ${student.Forename} (${student.Class || 'N/A'})
+                        ${student.ParentEmail ? `<br>Parent: ${student.ParentEmail}` : ''}
+                    </div>`
+                ).join('');
+            }
+
+            resultsContainer.classList.remove('hidden');
+        }
+
+        // ======================
+        // STORAGE FUNCTIONS
+        // ======================
+
+        function saveToLocalStorage() {
+            if (students.length === 0) {
+                alert('No student data to save. Load data first.');
+                return;
+            }
+            localStorage.setItem('studentData', JSON.stringify(students));
+            alert('Student data saved to localStorage!');
+        }
+
+        function loadFromLocalStorage() {
+            const storedData = localStorage.getItem('studentData');
+            if (storedData) {
+                students = JSON.parse(storedData);
+                displayStudents(students);
+            } else {
+                alert('No student data found in localStorage.');
+            }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('studentData');
+            students = [];
+            displayStudents(students);
+            alert('localStorage cleared!');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromLocalStorage();
+        });
+    </script>
+</body>
+
+</html>

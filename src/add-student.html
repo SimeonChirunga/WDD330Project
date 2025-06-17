@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            padding: 6px;
+            width: 200px;
+        }
+
+        .action-buttons {
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .parent-fields {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .back-link {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">SchoolLogo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-student.html">Add Student</a></li>
+                <li><a href="view-student.html">View Students</a></li>
+                <li><a href="enter-marks.html">Enter Student Marks</a></li>
+                <li><a href="generate-reports.html">Generate Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="back-link">
+        <a href="index.html">&larr; Back to Student List</a>
+    </div>
+
+    <div class="form-container">
+        <h2>Add New Student</h2>
+        <div class="form-group">
+            <label for="studentNo">StudentNo:</label>
+            <input type="text" id="studentNo" readonly>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" required>
+        </div>
+        <div class="form-group">
+            <label for="forename">Forename:</label>
+            <input type="text" id="forename" required>
+        </div>
+        <div class="form-group">
+            <label for="class">Class:</label>
+            <input type="text" id="class">
+        </div>
+
+        <div class="parent-fields">
+            <h3>Parent Information</h3>
+            <div class="form-group">
+                <label for="parentEmail">Parent Email:</label>
+                <input type="email" id="parentEmail">
+            </div>
+            <div class="form-group">
+                <label for="parentName">Parent Name:</label>
+                <input type="text" id="parentName">
+            </div>
+            <div class="form-group">
+                <label for="parentUID">Parent UID:</label>
+                <input type="text" id="parentUID" readonly>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button onclick="addStudent()">Add Student</button>
+            <button onclick="window.location.href='index.html'">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Load students data
+        let students = JSON.parse(localStorage.getItem('studentData')) || [];
+
+        // Generate student number when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('studentNo').value = generateStudentNo();
+        });
+
+        function generateStudentNo() {
+            if (students.length === 0) return 'THS0001';
+            const lastNo = students[students.length - 1].StudentNo;
+            const num = parseInt(lastNo.replace('THS', '')) + 1;
+            return 'THS' + num.toString().padStart(4, '0');
+        }
+
+        function addStudent() {
+            const studentNo = document.getElementById('studentNo').value;
+            const surname = document.getElementById('surname').value;
+            const forename = document.getElementById('forename').value;
+            const classVal = document.getElementById('class').value;
+            const parentEmail = document.getElementById('parentEmail').value;
+            const parentName = document.getElementById('parentName').value;
+            const parentUID = document.getElementById('parentUID').value;
+
+            if (!surname || !forename) {
+                alert('Surname and Forename are required!');
+                return;
+            }
+
+            const student = {
+                StudentNo: studentNo,
+                Surname: surname,
+                Forename: forename,
+                Class: classVal,
+                ParentEmail: parentEmail,
+                ParentName: parentName,
+                ParentUID: parentUID
+            };
+
+            students.push(student);
+            localStorage.setItem('studentData', JSON.stringify(students));
+            alert('Student added successfully!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

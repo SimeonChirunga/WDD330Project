@@ -1,0 +1,182 @@
+[
+    {
+      "StudentNo": "STU1001",
+      "StudentName": "Smith, John",
+      "Class": "Grade 5A",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:30:00Z",
+      "Subjects": {
+        "Math": 85,
+        "English": 78,
+        "Science": 92,
+        "History": 88,
+        "Geography": 81
+      },
+      "Comments": "Excellent performance in Science. Shows strong analytical skills across all subjects."
+    },
+    {
+      "StudentNo": "STU1002",
+      "StudentName": "Johnson, Emily",
+      "Class": "Grade 5B",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:35:00Z",
+      "Subjects": {
+        "Math": 72,
+        "English": 85,
+        "Science": 78,
+        "History": 80,
+        "Geography": 83
+      },
+      "Comments": "Good performance with particular strength in English. Could benefit from more practice in Math."
+    },
+    {
+      "StudentNo": "STU1003",
+      "StudentName": "Williams, Daniel",
+      "Class": "Grade 6A",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:40:00Z",
+      "Subjects": {
+        "Math": 90,
+        "English": 92,
+        "Science": 88,
+        "History": 85,
+        "Geography": 91
+      },
+      "Comments": "Outstanding performance across all subjects. Consistently exceeds expectations."
+    },
+    {
+      "StudentNo": "STU1004",
+      "StudentName": "Brown, Sophia",
+      "Class": "Grade 6B",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:45:00Z",
+      "Subjects": {
+        "Math": 68,
+        "English": 72,
+        "Science": 75,
+        "History": 70,
+        "Geography": 65
+      },
+      "Comments": "Satisfactory performance. Would benefit from additional support in Math and Geography."
+    },
+    {
+      "StudentNo": "STU1005",
+      "StudentName": "Jones, Matthew",
+      "Class": "Grade 5A",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:50:00Z",
+      "Subjects": {
+        "Math": 55,
+        "English": 60,
+        "Science": 58,
+        "History": 62,
+        "Geography": 59
+      },
+      "Comments": "Needs improvement across all subjects. Recommend additional tutoring sessions."
+    },
+    {
+      "StudentNo": "STU1006",
+      "StudentName": "Garcia, Olivia",
+      "Class": "Grade 5B",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T10:55:00Z",
+      "Subjects": {
+        "Math": 95,
+        "English": 89,
+        "Science": 93,
+        "History": 91,
+        "Geography": 94
+      },
+      "Comments": "Exceptional performance in all areas. Demonstrates advanced understanding of concepts."
+    },
+    {
+      "StudentNo": "STU1007",
+      "StudentName": "Miller, Ethan",
+      "Class": "Grade 6A",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T11:00:00Z",
+      "Subjects": {
+        "Math": 78,
+        "English": 82,
+        "Science": 85,
+        "History": 80,
+        "Geography": 77
+      },
+      "Comments": "Consistent performance across subjects. Shows good potential with continued effort."
+    },
+    {
+      "StudentNo": "STU1008",
+      "StudentName": "Davis, Ava",
+      "Class": "Grade 6B",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T11:05:00Z",
+      "Subjects": {
+        "Math": 82,
+        "English": 85,
+        "Science": 80,
+        "History": 78,
+        "Geography": 83
+      },
+      "Comments": "Strong performance with good balance across all subjects. Maintains good work habits."
+    },
+    {
+      "StudentNo": "STU1009",
+      "StudentName": "Rodriguez, Liam",
+      "Class": "Grade 5A",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T11:10:00Z",
+      "Subjects": {
+        "Math": 65,
+        "English": 70,
+        "Science": 68,
+        "History": 72,
+        "Geography": 67
+      },
+      "Comments": "Making steady progress. Would benefit from more focused practice in Math and Science."
+    },
+    {
+      "StudentNo": "STU1010",
+      "StudentName": "Martinez, Isabella",
+      "Class": "Grade 5B",
+      "Term": 1,
+      "DateGenerated": "2023-04-15T11:15:00Z",
+      "Subjects": {
+        "Math": 88,
+        "English": 85,
+        "Science": 90,
+        "History": 87,
+        "Geography": 89
+      },
+      "Comments": "Excellent performance with particular strengths in Science and Math. A pleasure to teach."
+    },
+    {
+      "StudentNo": "STU1001",
+      "StudentName": "Smith, John",
+      "Class": "Grade 5A",
+      "Term": 2,
+      "DateGenerated": "2023-08-20T09:30:00Z",
+      "Subjects": {
+        "Math": 87,
+        "English": 80,
+        "Science": 91,
+        "History": 85,
+        "Geography": 83
+      },
+      "Comments": "Continues to perform excellently. Shows improved consistency in English."
+    },
+    {
+      "StudentNo": "STU1002",
+      "StudentName": "Johnson, Emily",
+      "Class": "Grade 5B",
+      "Term": 2,
+      "DateGenerated": "2023-08-20T09:35:00Z",
+      "Subjects": {
+        "Math": 75,
+        "English": 88,
+        "Science": 80,
+        "History": 82,
+        "Geography": 85
+      },
+      "Comments": "Shows good improvement in Math. Maintains strong performance in English."
+    }
+  ]

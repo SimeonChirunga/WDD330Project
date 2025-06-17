@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Reports - Student Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 0.5rem;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .logo {
+            font-weight: bold;
+            margin-right: 2rem;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome {
+            margin-bottom: 2rem;
+        }
+
+        .report-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+
+        .report-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .report-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .report-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .report-card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Logo</div>
+            <a href="#">Home</a>
+            <a href="#">Add Student</a>
+            <a href="#">Edit Student Information</a>
+            <a href="#">Enter Student Marks</a>
+            <a href="#">Generate reports</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h2>Generate Reports</h2>
+            <p>Lorem ipsum dolor sit amet et defectus accommodare his consul copiosae legendos at vix ad putent defectus
+                delicata usu. Vidit dissentiet eos cu eum an brute copiosae hendrerit.</p>
+        </section>
+
+        <section class="report-section">
+            <h2>Generate Reports</h2>
+            <div class="report-options">
+                <div class="report-card">
+                    <h3>Class Performance</h3>
+                    <p>Generate detailed reports on class averages and performance trends</p>
+                </div>
+                <div class="report-card">
+                    <h3>Individual Student</h3>
+                    <p>Create progress reports for individual students</p>
+                </div>
+                <div class="report-card">
+                    <h3>Attendance Summary</h3>
+                    <p>View and export attendance records</p>
+                </div>
+                <div class="report-card">
+                    <h3>Custom Report</h3>
+                    <p>Create a custom report with your specific parameters</p>
+                </div>
+            </div>
+            <button>Generate Selected Reports</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025. All rights reserved.</p>
+        <p>Address:</p>
+    </footer>
+</body>
+
+</html>

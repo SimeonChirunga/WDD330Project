@@ -1,0 +1,92 @@
+[
+  {
+    "StudentNo": "STU1001",
+    "Forename": "John",
+    "Surname": "Smith",
+    "Class": "Grade 5A",
+    "ParentEmail": "parent.smith@example.com",
+    "ParentName": "Jane Smith",
+    "ParentUID": "parent1uid"
+  },
+  {
+    "StudentNo": "STU1002",
+    "Forename": "Emily",
+    "Surname": "Johnson",
+    "Class": "Grade 5B",
+    "ParentEmail": "parent.johnson@example.com",
+    "ParentName": "Michael Johnson",
+    "ParentUID": "parent2uid"
+  },
+  {
+    "StudentNo": "STU1003",
+    "Forename": "Daniel",
+    "Surname": "Williams",
+    "Class": "Grade 6A",
+    "ParentEmail": "parent.williams@example.com",
+    "ParentName": "Sarah Williams",
+    "ParentUID": "parent3uid"
+  },
+  {
+    "StudentNo": "STU1004",
+    "Forename": "Sophia",
+    "Surname": "Brown",
+    "Class": "Grade 6B",
+    "ParentEmail": "parent.brown@example.com",
+    "ParentName": "Robert Brown",
+    "ParentUID": "parent4uid"
+  },
+  {
+    "StudentNo": "STU1005",
+    "Forename": "Matthew",
+    "Surname": "Jones",
+    "Class": "Grade 5A",
+    "ParentEmail": "parent.jones@example.com",
+    "ParentName": "Lisa Jones",
+    "ParentUID": "parent5uid"
+  },
+  {
+    "StudentNo": "STU1006",
+    "Forename": "Olivia",
+    "Surname": "Garcia",
+    "Class": "Grade 5B",
+    "ParentEmail": "parent.garcia@example.com",
+    "ParentName": "Carlos Garcia",
+    "ParentUID": "parent6uid"
+  },
+  {
+    "StudentNo": "STU1007",
+    "Forename": "Ethan",
+    "Surname": "Miller",
+    "Class": "Grade 6A",
+    "ParentEmail": "parent.miller@example.com",
+    "ParentName": "Jennifer Miller",
+    "ParentUID": "parent7uid"
+  },
+  {
+    "StudentNo": "STU1008",
+    "Forename": "Ava",
+    "Surname": "Davis",
+    "Class": "Grade 6B",
+    "ParentEmail": "parent.davis@example.com",
+    "ParentName": "Thomas Davis",
+    "ParentUID": "parent8uid"
+  },
+  {
+    "StudentNo": "STU1009",
+    "Forename": "Liam",
+    "Surname": "Rodriguez",
+    "Class": "Grade 5A",
+    "ParentEmail": "parent.rodriguez@example.com",
+    "ParentName": "Maria Rodriguez",
+    "ParentUID": "parent9uid"
+  },
+  {
+    "StudentNo": "STU1010",
+    "Forename": "Isabella",
+    "Surname": "Martinez",
+    "Class": "Grade 5B",
+    "ParentEmail": "parent.martinez@example.com",
+    "ParentName": "James Martinez",
+    "ParentUID": "parent10uid"
+  }
+]

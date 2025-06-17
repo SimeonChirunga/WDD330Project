@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Reports</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">SchoolLogo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-student.html">Add Student</a></li>
+                <li><a href="view-student.html">View Students</a></li>
+                <li><a href="enter-marks.html">Enter Student Marks</a></li>
+                <li><a href="generate-reports.html">Generate Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="report-controls">
+            <label for="reportTerm">Select Term:</label>
+            <select id="reportTerm">
+                <option value="1">Term 1</option>
+                <option value="2">Term 2</option>
+                <option value="3">Term 3</option>
+            </select>
+
+            <button onclick="generateReports()">Generate Reports</button>
+            <button onclick="previewReports()">Preview Reports</button>
+        </div>
+
+        <div id="reportPreview" class="hidden">
+            <!-- Preview content will be loaded here -->
+        </div>
+    </main>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/reports.js"></script>
+</body>
+
+</html>

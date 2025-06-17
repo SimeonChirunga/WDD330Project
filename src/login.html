@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Report Card Generator Login</title>
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">SchoolLogo</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="add-student.html">Add Student</a></li>
+        <li><a href="view-student.html">View Students</a></li>
+        <li><a href="enter-marks.html">Enter Student Marks</a></li>
+        <li><a href="generate-reports.html">Generate Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="login-container">
+    <h1>Report Card Generator</h1>
+    <form>
+      <label>Username:</label>
+      <input type="text" id="username" name="username"><br><br>
+      <label>Password:</label>
+      <input type="password" id="password" name="password"><br><br>
+      <label>User Type:</label>
+      <select id="user-type" name="user-type">
+        <option value="teacher">Teacher</option>
+        <option value="parent">Parent</option>
+      </select><br><br>
+      <button type="submit">Login</button>
+      <a href="#">Forgot Password?</a>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Entry System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .student-list,
+        .marks-entry {
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr.selected {
+            background-color: #d4edff;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .form-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            padding: 6px;
+            width: 200px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .current-subject {
+            font-weight: bold;
+            color: #0066cc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">SchoolLogo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-student.html">Add Student</a></li>
+                <li><a href="view-student.html">View Students</a></li>
+                <li><a href="enter-marks.html">Enter Student Marks</a></li>
+                <li><a href="generate-reports.html">Generate Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Student Marks Entry System</h1>
+
+    <div class="controls">
+        <button onclick="loadStudents()">Load Students</button>
+        <button onclick="loadMarks()">Load Marks</button>
+        <button onclick="saveMarks()">Save Marks</button>
+        <button onclick="startSubjectEntry()">Start Subject Entry</button>
+        <button onclick="generateReportCards()">Generate Report Cards</button>
+    </div>
+
+    <div id="subjectPrompt" class="form-container hidden">
+        <h2>Enter Marks by Subject</h2>
+        <div class="form-group">
+            <label for="subjectSelect">Select Subject:</label>
+            <select id="subjectSelect">
+                <option value="">-- Select Subject --</option>
+                <option value="Maths">Maths</option>
+                <option value="English">English</option>
+                <option value="Ind. Language">Ind. Language</option>
+                <option value="Combined Science">Combined Science</option>
+                <option value="Heritage Studies">Heritage Studies</option>
+                <option value="Geography">Geography</option>
+                <option value="History">History</option>
+                <option value="Accounts">Accounts</option>
+            </select>
+        </div>
+        <button onclick="beginSubjectEntry()">Begin Entry</button>
+    </div>
+
+    <div class="container">
+        <div class="student-list">
+            <h2>Students</h2>
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>StudentNo</th>
+                        <th>Surname</th>
+                        <th>Forename</th>
+                        <th>Class</th>
+                    </tr>
+                </thead>
+                <tbody id="studentData">
+                    <!-- Student data will appear here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="marks-entry">
+            <h2>Marks Entry</h2>
+            <div id="currentSubject" class="current-subject"></div>
+            <table id="marksTable">
+                <thead>
+                    <tr>
+                        <th>StudentNo</th>
+                        <th>Name</th>
+                        <th>Mark</th>
+                    </tr>
+                </thead>
+                <tbody id="marksData">
+                    <!-- Marks entry will appear here -->
+                </tbody>
+            </table>
+            <div class="controls">
+                <button id="saveSubjectMarks" onclick="saveSubjectMarks()" class="hidden">Save Subject Marks</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let students = [];
+        let marksData = {};
+        let currentSubject = '';
+
+        // Subjects list
+        const subjects = [
+            "Maths", "English", "Ind. Language", "Combined Science",
+            "Heritage Studies", "Geography", "History", "Accounts"
+        ];
+
+        // Load student data
+        async function loadStudents() {
+            try {
+                const response = await fetch('students.json');
+                students = await response.json();
+                displayStudents();
+                console.log('Student data loaded');
+            } catch (error) {
+                console.error('Error loading students:', error);
+                alert('Error loading student data. Check console for details.');
+            }
+        }
+
+        // Load marks data
+        async function loadMarks() {
+            try {
+                const response = await fetch('marks.json');
+                marksData = await response.json();
+                console.log('Marks data loaded');
+            } catch (error) {
+                console.error('Error loading marks:', error);
+                // Initialize empty marks data structure
+                marksData = { students: {} };
+                subjects.forEach(subject => {
+                    marksData[subject] = {};
+                });
+            }
+        }
+
+        // Save marks data
+        async function saveMarks() {
+            const dataStr = JSON.stringify(marksData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'marks.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            console.log('Marks data saved');
+            alert('Marks data saved to marks.json');
+        }
+
+        // Display students in table
+        function displayStudents() {
+            const tbody = document.getElementById('studentData');
+            tbody.innerHTML = '';
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                row.dataset.id = student.StudentNo;
+
+                row.innerHTML = `
+                    <td>${student.StudentNo}</td>
+                    <td>${student.Surname}</td>
+                    <td>${student.Forename}</td>
+                    <td>${student.Class || 'N/A'}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Start subject entry process
+        function startSubjectEntry() {
+            document.getElementById('subjectPrompt').classList.remove('hidden');
+        }
+
+        // Begin entering marks for a subject
+        function beginSubjectEntry() {
+            currentSubject = document.getElementById('subjectSelect').value;
+            if (!currentSubject) {
+                alert('Please select a subject');
+                return;
+            }
+
+            document.getElementById('subjectPrompt').classList.add('hidden');
+            document.getElementById('currentSubject').textContent = `Entering Marks for: ${currentSubject}`;
+            document.getElementById('saveSubjectMarks').classList.remove('hidden');
+
+            displayMarksEntryTable();
+        }
+
+        // Display marks entry table for current subject
+        function displayMarksEntryTable() {
+            const tbody = document.getElementById('marksData');
+            tbody.innerHTML = '';
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                const studentId = student.StudentNo;
+                const currentMark = marksData[currentSubject]?.[studentId] || '';
+
+                row.innerHTML = `
+                    <td>${studentId}</td>
+                    <td>${student.Surname}, ${student.Forename}</td>
+                    <td><input type="number" min="0" max="100" 
+                        value="${currentMark}" 
+                        data-student="${studentId}"></td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Save marks for the current subject
+        function saveSubjectMarks() {
+            const inputs = document.querySelectorAll('#marksData input');
+
+            // Initialize subject if not exists
+            if (!marksData[currentSubject]) {
+                marksData[currentSubject] = {};
+            }
+
+            inputs.forEach(input => {
+                const studentId = input.dataset.student;
+                const mark = input.value.trim();
+
+                if (mark) {
+                    marksData[currentSubject][studentId] = parseInt(mark);
+                } else {
+                    // Remove if mark is empty
+                    delete marksData[currentSubject][studentId];
+                }
+            });
+
+            console.log(`Marks saved for ${currentSubject}`);
+            alert(`Marks for ${currentSubject} saved successfully!`);
+
+            // Move to next subject or finish
+            const currentIndex = subjects.indexOf(currentSubject);
+            if (currentIndex < subjects.length - 1) {
+                if (confirm(`Save marks for ${currentSubject} and continue to ${subjects[currentIndex + 1]}?`)) {
+                    currentSubject = subjects[currentIndex + 1];
+                    document.getElementById('currentSubject').textContent = `Entering Marks for: ${currentSubject}`;
+                    displayMarksEntryTable();
+                }
+            } else {
+                alert('All subjects completed!');
+                document.getElementById('saveSubjectMarks').classList.add('hidden');
+                document.getElementById('currentSubject').textContent = '';
+            }
+        }
+
+        // Generate report cards
+        function generateReportCards() {
+            if (Object.keys(marksData).length === 0) {
+                alert('No marks data available to generate reports');
+                return;
+            }
+
+            // Create report cards for each student
+            const reports = students.map(student => {
+                const studentId = student.StudentNo;
+                const report = {
+                    studentInfo: { ...student },
+                    marks: {},
+                    summary: {
+                        total: 0,
+                        average: 0,
+                        position: 0
+                    }
+                };
+
+                // Collect marks for each subject
+                let total = 0;
+                let count = 0;
+
+                subjects.forEach(subject => {
+                    if (marksData[subject] && marksData[subject][studentId]) {
+                        const mark = marksData[subject][studentId];
+                        report.marks[subject] = mark;
+                        total += mark;
+                        count++;
+                    }
+                });
+
+                // Calculate summary
+                report.summary.total = total;
+                report.summary.average = count > 0 ? Math.round(total / count) : 0;
+
+                return report;
+            });
+
+            // Calculate positions (simplified - would need proper sorting in real implementation)
+            reports.sort((a, b) => b.summary.average - a.summary.average);
+            reports.forEach((report, index) => {
+                report.summary.position = index + 1;
+            });
+
+            // Save reports to JSON
+            const dataStr = JSON.stringify(reports, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'report_cards.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            console.log('Report cards generated');
+            alert('Report cards generated and saved as report_cards.json');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize marks data structure
+            marksData = { students: {} };
+            subjects.forEach(subject => {
+                marksData[subject] = {};
+            });
+        });
+    </script>
+</body>
+
+</html>

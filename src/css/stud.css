@@ -1,0 +1,48 @@
+.student-data-management {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+#student-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#student-table th,
+#student-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#student-table th {
+    background-color: #f0f0f0;
+}
+
+#add-new-student {
+    margin-top: 20px;
+}
+
+#add-student-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+#add-student-form-fields label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#add-student-form-fields input[type="text"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}

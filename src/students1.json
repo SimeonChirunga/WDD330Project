@@ -1,0 +1,65 @@
+[
+  {
+    "StudentNo": "THS0001",
+    "Surname": "ABASI",
+    "Forename": "SHAZIA",
+    "Class": "1C",
+    "ParentEmail": "parent1@example.com",
+    "ParentUID": "firebaseUID1",  
+    "ParentName": "MR ABASI"
+  },
+  {
+    "StudentNo": "THS0002",
+    "Surname": "BANDA",
+    "Forename": "LEANNE",
+    "Class": "1C",
+    "ParentEmail": "parent2@example.com",
+    "ParentUID": null,  
+    "ParentName": "MRS BANDA"
+  },
+  {
+    "StudentNo": "THS0003",
+    "Surname": "CHAKONA",
+    "Forename": "MUFARO B",
+    "Class": "1C",
+    "ParentEmail": "parent3@example.com",
+    "ParentUID": "firebaseUID3",
+    "ParentName": "MR CHAKONA"
+  },
+  {
+    "StudentNo": "THS0004",
+    "Surname": "CHAUKE",
+    "Forename": "SHARON",
+    "Class": "1E",
+    "ParentEmail": "parent4@example.com",
+    "ParentUID": "firebaseUID4",
+    "ParentName": "MRS CHAUKE"
+  },
+  {
+    "StudentNo": "THS0005",
+    "Surname": "CHENJERA",
+    "Forename": "ANNA T",
+    "Class": "1E",
+    "ParentEmail": "",  
+    "ParentUID": null,
+    "ParentName": ""
+  },
+  {
+    "StudentNo": "THS0006",
+    "Surname": "CHIGAYO",
+    "Forename": "ANENYASHA",
+    "Class": "1N",
+    "ParentEmail": "parent6@example.com",
+    "ParentUID": null,  
+    "ParentName": "MR CHIGAYO"
+  },
+  {
+    "StudentNo": "THS0007",
+    "Surname": "CHIKUKWA",
+    "Forename": "TAONGA L",
+    "Class": "",
+    "ParentEmail": "parent7@example.com",
+    "ParentUID": "firebaseUID7",
+    "ParentName": "MRS CHIKUKWA"
+  }
+]

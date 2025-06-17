@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Student Report - Thornhill High School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 2px solid #0066cc;
+    }
+
+    .school-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0066cc;
+      margin-bottom: 0.5rem;
+    }
+
+    .report-title {
+      font-size: 18px;
+      margin-bottom: 1rem;
+    }
+
+    .student-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .info-box {
+      background-color: #f5f5f5;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #0066cc;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .remarks {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-left: 4px solid #0066cc;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .print-button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 1rem 0;
+    }
+
+    @media print {
+      .print-button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="school-name">THORNHILL HIGH SCHOOL</div>
+    <div class="report-title">REPORT ON <strong>ABASI SHAZIA</strong> IN FORM 1 CENTRAL FOR TERM 1 YEAR 2025</div>
+  </header>
+
+  <div style="padding: 0 2rem;">
+    <div class="student-info">
+      <div class="info-box">
+        <strong>CLASS POSITION:</strong> 35 OUT OF 78
+      </div>
+      <div class="info-box">
+        <strong>PUPIL'S AVERAGE:</strong> 64 (CLASS AVERAGE 61)
+      </div>
+      <div class="info-box">
+        <strong>ACTUAL ATTENDANCE:</strong> 62 (POSSIBLE ATTENDANCE 62)
+      </div>
+      <div class="info-box">
+        <strong>RECREATIVE ACTIVITIES:</strong> Athletics
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>SUBJECT</th>
+          <th>EXAM MARK</th>
+          <th>EXAM SYMBOL</th>
+          <th>CLASS AVE</th>
+          <th>REMARKS</th>
+          <th>SUBJECT TEACHER</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SHONA</td>
+          <td>65</td>
+          <td>B</td>
+          <td>58</td>
+          <td>Good but aim high</td>
+          <td>CHIWAWA R</td>
+        </tr>
+        <tr>
+          <td>HISTORY</td>
+          <td>78</td>
+          <td>A</td>
+          <td>67</td>
+          <td>Well done!!</td>
+          <td>BHEBHE</td>
+        </tr>
+        <tr>
+          <td>ACCOUNTS</td>
+          <td>88</td>
+          <td>A</td>
+          <td>75</td>
+          <td>Well done!!</td>
+          <td>TASARA</td>
+        </tr>
+        <tr>
+          <td>GEOGRAPHY</td>
+          <td>69</td>
+          <td>B</td>
+          <td>63</td>
+          <td>Good but aim high</td>
+          <td>MAKUBA</td>
+        </tr>
+        <tr>
+          <td>COMBINED SCIENCE</td>
+          <td>59</td>
+          <td>C</td>
+          <td>60</td>
+          <td>You can do better</td>
+          <td>MATIMBE</td>
+        </tr>
+        <tr>
+          <td>MATHEMATICS</td>
+          <td>20</td>
+          <td>U</td>
+          <td>49</td>
+          <td>Work Hard</td>
+          <td>MADALA</td>
+        </tr>
+        <tr>
+          <td>TECHNICAL GRAPHICS</td>
+          <td>68</td>
+          <td>B</td>
+          <td>68</td>
+          <td>Good but aim high</td>
+          <td>HLOMAYI</td>
+        </tr>
+        <tr>
+          <td>HERITAGE STUDIES</td>
+          <td>53</td>
+          <td>C</td>
+          <td>48</td>
+          <td>You can do better</td>
+          <td>DZIVAKWE</td>
+        </tr>
+        <tr>
+          <td>ENGLISH LANGUAGE</td>
+          <td>78</td>
+          <td>A</td>
+          <td>74</td>
+          <td>Well done!!</td>
+          <td>MUNOZOGARA</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="remarks">
+      <p><strong>CLASS TEACHER'S COMMENT:</strong><br>
+        <em>Works enthusiastically and is a promising student</em><br>
+        <strong>MATIMBE</strong>
+      </p>
+    </div>
+
+    <div class="remarks">
+      <p><strong>HEAD'S COMMENT:</strong><br>
+        <em>A very good report. Should continue working hard.</em><br>
+        <strong>SIBANDA, S.</strong>
+      </p>
+    </div>
+
+    <div class="info-box" style="margin: 1rem 0;">
+      <strong>NEXT TERM BEGINS ON:</strong> 13 MAY 2025 AND ENDS ON 07 AUG 2025
+    </div>
+
+    <button class="print-button" onclick="window.print()">Print Report</button>
+  </div>
+
+  <div class="footer">
+    <p>CONTACT US AT P.O.Box 656 Gweru. Zimbabwe. Tel +263542223961.<br>
+      Email: thornhillhighsch@gmail.com</p>
+    <p>© 2025 Thornhill High School. All rights reserved.</p>
+  </div>
+</body>
+
+</html>

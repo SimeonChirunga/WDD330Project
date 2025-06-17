@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 8px;
+            width: 300px;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">SchoolLogo</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="add-student.html">Add Student</a></li>
+                <li><a href="view-student.html">View Students</a></li>
+                <li><a href="enter-marks.html">Enter Student Marks</a></li>
+                <li><a href="generate-reports.html">Generate Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Edit Student</h1>
+    <div class="form-container" id="editForm">
+        <div class="form-group">
+            <label for="studentNo">Student No:</label>
+            <input type="text" id="studentNo" readonly>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" required>
+            <div id="surnameError" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="forename">Forename:</label>
+            <input type="text" id="forename" required>
+            <div id="forenameError" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="class">Class:</label>
+            <input type="text" id="class">
+        </div>
+        <div class="form-group">
+            <label for="parentEmail">Parent Email:</label>
+            <input type="email" id="parentEmail">
+        </div>
+        <div class="action-buttons">
+            <button onclick="saveStudent()">Save</button>
+            <button onclick="window.location.href='index.html'">Cancel</button>
+            <button onclick="deleteStudent()" style="background-color:#ffcccc;">Delete</button>
+        </div>
+    </div>
+
+    <div id="notFound" style="text-align:center; margin-top:50px; display:none;">
+        <h2>Student Not Found</h2>
+        <p>The requested student could not be found.</p>
+        <button onclick="window.location.href='index.html'">Back to List</button>
+    </div>
+
+    <script>
+        // Get student number from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const studentNo = urlParams.get('studentNo');
+
+        // Load student data
+        let students = JSON.parse(localStorage.getItem('studentData')) || [];
+        let studentIndex = -1;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            if (studentNo) {
+                // Find the student in the array
+                studentIndex = students.findIndex(s => s.StudentNo === studentNo);
+
+                if (studentIndex !== -1) {
+                    // Populate the form with student data
+                    const student = students[studentIndex];
+                    document.getElementById('studentNo').value = student.StudentNo;
+                    document.getElementById('surname').value = student.Surname;
+                    document.getElementById('forename').value = student.Forename;
+                    document.getElementById('class').value = student.Class || '';
+                    document.getElementById('parentEmail').value = student.ParentEmail || '';
+                } else {
+                    // Student not found - show message
+                    document.getElementById('editForm').style.display = 'none';
+                    document.getElementById('notFound').style.display = 'block';
+                }
+            } else {
+                // No student number provided
+                document.getElementById('editForm').style.display = 'none';
+                document.getElementById('notFound').style.display = 'block';
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            if (!document.getElementById('surname').value.trim()) {
+                document.getElementById('surnameError').textContent = 'Surname is required';
+                isValid = false;
+            } else {
+                document.getElementById('surnameError').textContent = '';
+            }
+
+            if (!document.getElementById('forename').value.trim()) {
+                document.getElementById('forenameError').textContent = 'Forename is required';
+                isValid = false;
+            } else {
+                document.getElementById('forenameError').textContent = '';
+            }
+
+            return isValid;
+        }
+
+        function saveStudent() {
+            if (!validateForm()) return;
+
+            // Update the student data
+            students[studentIndex] = {
+                StudentNo: document.getElementById('studentNo').value,
+                Surname: document.getElementById('surname').value,
+                Forename: document.getElementById('forename').value,
+                Class: document.getElementById('class').value,
+                ParentEmail: document.getElementById('parentEmail').value,
+                ParentName: '', // Add if you have this field
+                ParentUID: ''   // Add if you have this field
+            };
+
+            // Save back to localStorage
+            localStorage.setItem('studentData', JSON.stringify(students));
+
+            alert('Student updated successfully!');
+            window.location.href = 'index.html';
+        }
+
+        function deleteStudent() {
+            if (confirm('Are you sure you want to delete this student?')) {
+                students.splice(studentIndex, 1);
+                localStorage.setItem('studentData', JSON.stringify(students));
+                alert('Student deleted successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

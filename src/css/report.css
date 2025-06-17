@@ -1,0 +1,55 @@
+.report-card-template-management {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.template-list {
+    margin-bottom: 20px;
+}
+
+#template-table-body {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#template-table-body th,
+#template-table-body td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#template-table-body th {
+    background-color: #f0f0f0;
+}
+
+#template-editor {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+#template-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#template-form input[type="text"],
+#template-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+#preview-template {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+#preview-content {
+    padding: 20px;
+}
